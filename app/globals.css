@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    html,
+    body {
+        @apply h-full w-full m-0 p-0 overflow-x-hidden;
+    }
+
+    body {
+        background: linear-gradient(90deg, #7531f3 0%, #ffffff 90%);
+        background-attachment: fixed;
+        /* Font is applied in layout.js via Next/Font */
+        @apply text-zinc-900 antialiased selection:bg-[#7531f3]/20 selection:text-[#7531f3];
+    }
+}
+
+@layer utilities {
+    .glass {
+        @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+    }
+
+    .love-card {
+        @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl;
+    }
+}
