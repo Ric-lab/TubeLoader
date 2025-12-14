@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
 # Add non-root user
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-USER nextjs
+
 
 # Set environment
 ENV NODE_ENV production
@@ -56,6 +56,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/apps/tube-loader/.next/static ./a
 COPY --from=builder --chown=nextjs:nodejs /app/apps/tube-loader/scripts ./apps/tube-loader/scripts
 
 EXPOSE 3000
+
+USER nextjs
 
 # Start the server (path depends on monorepo structure in standalone)
 CMD ["node", "apps/tube-loader/server.js"]
