@@ -9,6 +9,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['var(--font-poppins)'],
+                space: ['var(--font-space-grotesk)'],
             },
         },
     },

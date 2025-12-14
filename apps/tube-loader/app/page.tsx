@@ -342,8 +342,8 @@ export default function Home() {
         <Card className="w-full">
             {/* Header */}
             <div className="mb-8 text-center">
-                <h2 className="text-3xl font-bold text-[#7531f3] tracking-tight mb-1">MediaLoader</h2>
-                <p className="text-zinc-500 text-sm">X/LAB Enterprise Utility</p>
+                <h2 className="text-3xl font-bold text-[#7531f3] tracking-tight mb-1">TubeLoader</h2>
+                <p className="text-zinc-500 text-sm"></p>
             </div>
 
             {/* Options Selector */}
@@ -403,7 +403,7 @@ export default function Home() {
                                 <FileText size={16} className={formData.options.transcription ? "text-[#7531f3]" : "text-zinc-400"} />
                                 Transcrição AI
                             </span>
-                            <span className="text-[10px] text-zinc-400 font-medium">Auto-Generated (Whisper)</span>
+                            <span className="text-[10px] text-zinc-400 font-medium">Auto-Generated</span>
                         </div>
                     </div>
                 </div>
