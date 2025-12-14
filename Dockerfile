@@ -1,10 +1,10 @@
-FROM node:20-bookworm-slim AS pruner
+FROM node:20-bookworm AS pruner
 WORKDIR /app
 RUN npm install -g turbo
 COPY . .
 RUN turbo prune --scope=tube-loader --docker
 
-FROM node:20-bookworm-slim AS builder
+FROM node:20-bookworm AS builder
 WORKDIR /app
 
 # Install dependencies (only those needed for the specific app)
@@ -19,11 +19,12 @@ COPY turbo.json turbo.json
 # Build with turbo (this runs next build)
 RUN npx turbo run build --filter=tube-loader...
 
-FROM node:20-bookworm-slim AS runner
+FROM node:20-bookworm AS runner
 WORKDIR /app
 
 # Install Runtime System Dependencies (Python, FFmpeg)
 RUN apt-get update && apt-get install -y \
+    ca-certificates \
     python3 \
     python3-pip \
     python3-venv \
