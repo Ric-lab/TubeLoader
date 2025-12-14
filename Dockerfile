@@ -59,7 +59,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/apps/tube-loader/scripts ./apps/t
 
 EXPOSE 3000
 
-USER nextjs
+# USER nextjs
 
 # Start the server (path depends on monorepo structure in standalone)
 CMD ["node", "apps/tube-loader/server.js"]
