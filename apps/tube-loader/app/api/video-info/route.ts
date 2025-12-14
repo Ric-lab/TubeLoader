@@ -4,6 +4,7 @@ import { spawn } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
+import dns from 'dns/promises';
 
 const pythonCommand = process.platform === 'win32' ? 'python' : 'python3';
 
@@ -18,6 +19,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         if (!url) {
             return NextResponse.json({ detail: "URL is required" }, { status: 400 });
         }
+
+        // DEBUG: Test DNS resolution on the Node.js side
+        try {
+            const dnsRes = await dns.lookup('www.youtube.com');
+            console.log(`DEBUG: Node.js DNS resolution for www.youtube.com successful: ${JSON.stringify(dnsRes)}`);
+        } catch (e: any) {
+            console.error(`DEBUG: Node.js DNS resolution for www.youtube.com FAILED: ${e.message}`);
+        }
+
 
         const args = [
             '-m', 'yt_dlp',
