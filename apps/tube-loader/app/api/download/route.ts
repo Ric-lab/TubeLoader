@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
                     try { fs.mkdirSync(downloadsDir, { recursive: true }); } catch (e) { }
                 }
 
-                // Predictable filename template
-                const outputTemplate = `%(title)s.%(ext)s`;
+                // Predictable filename template (limit title to 150 chars)
+                const outputTemplate = `%(title).150s.%(ext)s`;
                 const fullOutputTemplate = path.join(downloadsDir, outputTemplate);
 
                 const args = [

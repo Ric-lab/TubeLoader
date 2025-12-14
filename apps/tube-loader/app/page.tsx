@@ -4,10 +4,8 @@ import { useRef, useState } from 'react';
 import { z } from 'zod';
 import { Download, Scissors, CheckCircle2, AlertCircle, Link2, Play, Music, Loader2, Folder, X, FileText, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card } from '../components/ui/card';
-import { Input } from '../components/ui/input';
-import { Button } from '../components/ui/button';
-import { Progress } from '../components/ui/progress';
+
+import { Card, Input, Button, Progress } from '@x-lab/ui';
 
 // Validation Schema
 const downloadSchema = z.object({
@@ -140,7 +138,7 @@ export default function Home() {
 
         try {
             // STEP 1: Fetch Video Info (Filename)
-            const infoResponse = await fetch('/api/video-info', {
+            const infoResponse = await fetch('/TubeLoader/api/video-info', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -214,7 +212,7 @@ export default function Home() {
             setProgressDetail('Starting download...');
             abortControllerRef.current = new AbortController();
 
-            const response = await fetch('/api/download', {
+            const response = await fetch('/TubeLoader/api/download', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -298,7 +296,7 @@ export default function Home() {
             // STEP 4: Transfer to Chosen Location
             if (serverFilename) {
                 setProgressDetail("Transferring...");
-                const fileRes = await fetch(`/api/serve-file?filename=${encodeURIComponent(serverFilename)}`);
+                const fileRes = await fetch(`/TubeLoader/api/serve-file?filename=${encodeURIComponent(serverFilename)}`);
                 if (!fileRes.ok) throw new Error("Failed to retrieve file from server");
                 const blob = await fileRes.blob();
 

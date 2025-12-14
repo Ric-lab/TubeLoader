@@ -18,7 +18,7 @@ export const metadata = {
     description: "Media Downloader",
 };
 
-import { Navbar } from "../components/Navbar";
+import { Navbar } from '@x-lab/ui';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (

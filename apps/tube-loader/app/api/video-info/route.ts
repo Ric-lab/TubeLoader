@@ -76,7 +76,13 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
                     }
                     resolve(NextResponse.json({ detail: cleanError || 'Falha ao buscar informações do vídeo' }, { status: 500 }));
                 } else {
-                    const filename = stdout.trim().split('\n').pop() || 'video.mp4';
+                    let filename = stdout.trim().split('\n').pop() || 'video.mp4';
+                    // Truncate to safe length for Windows (e.g., 200 chars)
+                    if (filename.length > 200) {
+                        const ext = path.extname(filename);
+                        const name = path.basename(filename, ext);
+                        filename = name.substring(0, 200) + ext;
+                    }
                     resolve(NextResponse.json({ filename: filename.trim() }));
                 }
             });
