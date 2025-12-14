@@ -25,7 +25,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
             '--print', 'filename', // Only print the filename
             '--no-playlist',
             '--restrict-filenames', // ASCII safe
+            '--restrict-filenames', // ASCII safe
             '--js-runtimes', 'node', // Explicitly use Node.js
+            '--force-ipv4', // Fix DNS resolution issues in containers
         ];
 
         // Server-Side Cookies Strategy

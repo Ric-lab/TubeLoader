@@ -48,6 +48,7 @@ export async function POST(req: NextRequest) {
                     '--restrict-filenames',
                     // Quote the path in case of spaces
                     '--js-runtimes', `node:"${process.execPath}"`,
+                    '--force-ipv4', // Fix DNS resolution issues in containers
                 ];
 
                 const debugNode = JSON.stringify({ status: 'info', detail: `DEBUG: Node Path: ${process.execPath}` });
