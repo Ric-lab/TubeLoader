@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { spawn } from 'child_process';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
+
+const pythonCommand = process.platform === 'win32' ? 'python' : 'python3';
 
 // Prevent caching
 export const dynamic = 'force-dynamic';
@@ -51,7 +54,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
             args.push('--merge-output-format', 'mp4');
         }
 
-        const child = spawn('python', args);
+        const child = spawn(pythonCommand, args);
 
         let stdout = '';
         let stderr = '';

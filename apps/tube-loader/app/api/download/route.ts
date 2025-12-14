@@ -6,6 +6,8 @@ import os from 'os';
 import archiver from 'archiver';
 import crypto from 'crypto';
 
+const pythonCommand = process.platform === 'win32' ? 'python' : 'python3';
+
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
@@ -99,9 +101,9 @@ export async function POST(req: NextRequest) {
                     controller.enqueue(encoder.encode(chunk + '\n'));
                 }
 
-                console.log(`Executing: python ${args.join(' ')}`);
+                console.log(`Executing: ${pythonCommand} ${args.join(' ')}`);
 
-                const pythonProcess = spawn('python', args);
+                const pythonProcess = spawn(pythonCommand, args);
 
                 // ... signal handling ...
                 if (req.signal) {
@@ -285,7 +287,7 @@ export async function POST(req: NextRequest) {
                                         const transcribeArgs = [transcribeScript, audioSourceForTranscribe, dir];
 
                                         await new Promise<void>((resolveTranscribe) => {
-                                            const txChild = spawn('python', transcribeArgs);
+                                            const txChild = spawn(pythonCommand, transcribeArgs);
 
                                             txChild.stdout.on('data', (d) => {
                                                 const msg = d.toString().trim();
