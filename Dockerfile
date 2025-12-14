@@ -50,7 +50,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt --break-system-packages
 # The standalone folder contains a minimal monorepo structure
 COPY --from=builder --chown=nextjs:nodejs /app/apps/tube-loader/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/apps/tube-loader/.next/static ./apps/tube-loader/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/tube-loader/public ./apps/tube-loader/public
+
 
 # Copy custom scripts
 COPY --from=builder --chown=nextjs:nodejs /app/apps/tube-loader/scripts ./apps/tube-loader/scripts
