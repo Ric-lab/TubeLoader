@@ -1,7 +1,13 @@
-import { forwardRef } from 'react';
+import { forwardRef, InputHTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { LucideIcon } from 'lucide-react';
 
-export const Input = forwardRef(({ className, error, icon: Icon, ...props }, ref) => {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    error?: string;
+    icon?: LucideIcon;
+}
+
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ className, error, icon: Icon, ...props }, ref) => {
     return (
         <div className="relative w-full">
             {Icon && (

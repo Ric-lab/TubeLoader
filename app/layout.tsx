@@ -8,20 +8,20 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-    title: "TubeLoader | LoveVet Edition",
+    title: "MediaLoader By X/LAB",
     description: "Enterprise Media Downloader",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             <body className={`${poppins.variable} font-sans min-h-screen flex flex-col items-center justify-center p-4 md:p-8`}>
-                <main className="w-full max-w-lg z-10 relative">
+                <main className="w-full max-w-2xl z-10 relative">
                     {children}
                 </main>
 
                 <footer className="mt-12 text-[#7531f3]/60 text-xs font-semibold tracking-widest uppercase">
-                    Powered by LoveVet Architecture (Next.js)
+                    Powered by X/LAB
                 </footer>
             </body>
         </html>

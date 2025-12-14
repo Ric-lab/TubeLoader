@@ -3,6 +3,14 @@
 import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
+type ButtonProps = {
+    children?: React.ReactNode;
+    className?: string;
+    disabled?: boolean;
+    variant?: 'primary' | 'secondary' | 'ghost';
+    loading?: boolean;
+    [key: string]: any; // Allow any other props
+};
 
 export function Button({
     className,
@@ -11,7 +19,7 @@ export function Button({
     disabled,
     children,
     ...props
-}) {
+}: ButtonProps) {
     const baseStyles = "relative inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7531f3] disabled:opacity-50 disabled:cursor-not-allowed";
 
     const variants = {
@@ -20,8 +28,9 @@ export function Button({
         ghost: "text-zinc-600 hover:text-[#7531f3] hover:bg-[#7531f3]/5",
     };
 
+    const MotionButton = motion.button as any;
     return (
-        <motion.button
+        <MotionButton
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={twMerge(baseStyles, variants[variant], className)}
@@ -34,6 +43,6 @@ export function Button({
                     Processing...
                 </>
             ) : children}
-        </motion.button>
+        </MotionButton>
     );
 }

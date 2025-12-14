@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "archiver": "^7.0.1",
     "axios": "^1.6.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.0.0",
@@ -20,6 +21,7 @@
     "zod": "^3.22.0"
   },
   "devDependencies": {
+    "@types/archiver": "^7.0.0",
     "@types/node": "^25.0.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
